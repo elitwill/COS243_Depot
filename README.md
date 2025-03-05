@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# COS243_Depot
+>>>>>>> d91a4b2b1f6d5f5ec1b31fcee10c98c8b68045fc
