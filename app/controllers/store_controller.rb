@@ -6,13 +6,8 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit https://pragprog.com/titles/rails7 for more book information.
 #---
-Rails.application.routes.draw do
-  root 'store#index', as: 'store_index'
-  resources :products
-  # Define your application routes per the DSL in
-  # https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+class StoreController < ApplicationController
+  def index
+    @products = Product.order(:title)
+  end
 end
-
