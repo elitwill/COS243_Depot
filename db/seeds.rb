@@ -21,7 +21,7 @@ Product.create!(title: 'Design and Build Great Web APIs',
           panic. Tackle just about any API cahllenge with more than a dozen 
           open-source utilities and common programming patterns you can apply 
           right away.
-        </p>}
+        </p>},
     image_url: 'maapis.jpg',
     price: 24.95)
 #...
