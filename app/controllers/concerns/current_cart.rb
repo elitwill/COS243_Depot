@@ -6,14 +6,14 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit https://pragprog.com/titles/rails7 for more book information.
 #---
-Rails.application.routes.draw do
-  resources :line_items
-  resources :carts
-  root 'store#index', as: 'store_index'
-  resources :products
-  # Define your application routes per the DSL in
-  # https://guides.rubyonrails.org/routing.html
+module CurrentCart
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  private
+
+    def set_cart 
+      @cart = Cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
+    end
 end
