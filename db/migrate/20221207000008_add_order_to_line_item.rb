@@ -6,15 +6,11 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit https://pragprog.com/titles/rails7 for more book information.
 #---
-Rails.application.routes.draw do
-  resources :orders
-  resources :line_items
-  resources :carts
-  root 'store#index', as: 'store_index'
-  resources :products
-  # Define your application routes per the DSL in
-  # https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+class AddOrderToLineItem < ActiveRecord::Migration[7.0]
+  def change
+    unless column_exists?(:line_items, :order_id)
+      add_reference :line_items, :order, null: true, foreign_key: true
+    end    
+    change_column :line_items, :cart_id, :integer, null: true
+  end
 end
