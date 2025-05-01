@@ -1,6 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[7.0]
   def change
-    create_table :orders do |t|
+    create_table :orders, if_not_exists: true do |t|
       t.string :name
       t.text :address
       t.string :email
