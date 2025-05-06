@@ -1,3 +1,11 @@
+#---
+# Excerpted from "Agile Web Development with Rails 7",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material,
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose.
+# Visit https://pragprog.com/titles/rails7 for more book information.
+#---
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
@@ -11,30 +19,24 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+class ActionDispatch::IntegrationTest
+  def login_as(user)
+    if respond_to? :visit
+      visit login_url
+      fill_in :name, with: user.name
+      fill_in :password, with: 'secret'
+      click_on 'Login'
+    else
+      post login_url, params: { name: user.name, password: 'secret' }
+    end
+  end
 
-# TRIED THIS
-# ----------
-# ENV["RAILS_ENV"] ||= "test"
-# require_relative "../config/environment"
-# require "rails/test_help"
+  def logout
+    delete logout_url
+  end
 
-# require "capybara/rails"
-# require "capybara/minitest"
-
-# Capybara.register_driver :custom_chrome_headless do |app|
-#   options = Selenium::WebDriver::Chrome::Options.new
-#   options.add_argument("--headless")
-#   options.add_argument("--disable-gpu")
-#   options.add_argument("--window-size=1400,1400")
-
-#   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-# end
-
-# class ActiveSupport::TestCase
-#   # Run tests in parallel with specified workers
-#   parallelize(workers: :number_of_processors)
-
-#   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-#   fixtures :all
-# end
+  def setup
+    login_as users(:one)
+  end
+end
 
