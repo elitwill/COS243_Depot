@@ -40,6 +40,10 @@
               <li>
                 <%= link_to 'Destroy', product, class: 'hover:underline', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
               </li>
+              <!-- THIS IS THE CHANGE DELETE IF NOT WORKING STILL-->
+              <li>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product), method: :post, class: 'hover:underline' %> <!-- HERE IS THE CHANGE -->
+              </li>
             </ul>
           </td>
         </tr>
